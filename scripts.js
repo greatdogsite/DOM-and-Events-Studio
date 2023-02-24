@@ -23,7 +23,7 @@ window.addEventListener("load", function () {
         if (confirm) {
             flightStatus.textContent = "Shuttle in flight.";
             shuttleBackground.style.backgroundColor = "blue";
-            spaceShuttleHeight.innerHTML = "10,000";
+            spaceShuttleHeight.innerHTML = "10000";
         }
     });
     landing.addEventListener("click", function (event) {
@@ -48,25 +48,35 @@ window.addEventListener("load", function () {
         let rocketStyle = window.getComputedStyle(rocketPosition);
         let bottomPosition = rocketStyle.getPropertyValue("bottom");
         let absolutePosition = parseInt(bottomPosition);
-        rocketPosition.style.bottom = absolutePosition + 10 + "px";
+        if (absolutePosition + 10 <= 250) {
+            rocketPosition.style.bottom = absolutePosition + 10 + "px";
+            spaceShuttleHeight.innerHTML = parseInt(spaceShuttleHeight.innerHTML)+10000;
+        }
     })
     down.addEventListener("click", function () {
         let rocketStyle = window.getComputedStyle(rocketPosition);
         let bottomPosition = rocketStyle.getPropertyValue("bottom");
         let absolutePosition = parseInt(bottomPosition);
-        rocketPosition.style.bottom = absolutePosition - 10 + "px";
+        if (absolutePosition - 10 > 0) {
+            rocketPosition.style.bottom = absolutePosition - 10 + "px";
+            spaceShuttleHeight.innerHTML = parseInt(spaceShuttleHeight.innerHTML)-10000;
+        }
     })
     left.addEventListener("click", function () {
         let rocketStyle = window.getComputedStyle(rocketPosition);
         let leftPosition = rocketStyle.getPropertyValue("left");
         let absolutePosition = parseInt(leftPosition);
-        rocketPosition.style.left = absolutePosition - 10 + "px";
+        if (absolutePosition - 10 > -20) {
+            rocketPosition.style.left = absolutePosition - 10 + "px";
+        }
     })
     right.addEventListener("click", function () {
         let rocketStyle = window.getComputedStyle(rocketPosition);
         let leftPosition = rocketStyle.getPropertyValue("left");
         let absolutePosition = parseInt(leftPosition);
-        rocketPosition.style.left = absolutePosition + 10 + "px";
+        if (absolutePosition + 10 <= 400) {
+            rocketPosition.style.left = absolutePosition + 10 + "px";
+        }
     })
 
 })
